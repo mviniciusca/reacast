@@ -6,6 +6,8 @@
 ## ⚔️ Sobre 
 Aplicativo baseado em React que traz a previsão do tempo das cidades, utilizando uma API. Também irá trazer a lista de aeroportos próximos baseado na localizaçao obtida pelo próprio app ao receber a cidade digita. 
 
+Baseado no Workshop fornecido pela Escola Britânica de Artes Criativas e Tecnologia e guiado pelo professor de React, Miguel.
+
 ## 🧪 Features
 
 - [x] Busca com todas as cidades do Mundo; 
