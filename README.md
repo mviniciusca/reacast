@@ -1,7 +1,7 @@
 # 🚀 Reacast
-<span align="center">
+<p align="center">
     <img src="https://i.imgur.com/djyRqzL.gif">
-</span>
+</p>
 
 ## ⚔️ Sobre 
 Aplicativo baseado em React que traz a previsão do tempo das cidades, utilizando uma API. Também irá trazer a lista de aeroportos próximos baseado na localizaçao obtida pelo próprio app ao receber a cidade digita. 
