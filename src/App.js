@@ -17,7 +17,24 @@ function App() {
 
     //recebe os erros da api
 
-    const [error, setError] = useState(null); // estado de erro
+    // const [error, setError] = useState(null); // estado de erro
+
+    // feedback positivo
+
+    const [feedbackPositivo, setFeedbackPositivo] = useState(false);
+    const handleFeedback = () => {
+        console.log('+1');
+        setFeedbackPositivo(true);
+    }
+
+    //feedback negativo
+
+    const [feedbackNegativo, setFeedbackNegativo] = useState(false);
+    const handleFeedbackNegativo = () => {
+        console.log('-1');
+        setFeedbackNegativo(true);
+    }
+
 
     // Searching State
 
@@ -37,6 +54,8 @@ function App() {
 
         setSearching(true);
         setComplete(false);
+        setFeedbackPositivo(false);
+        setFeedbackNegativo(false);
 
         fetch(`${API_URL}key=${API_KEY}&q=${BuscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
             if (response.status === 200) {
@@ -73,10 +92,19 @@ function App() {
                             <div className="app-return-weather strong">{forecast.current.temp_c}°<span id="temp">C</span></div>
                             <div className="app-return-text">{forecast.current.condition.text}</div>
                             <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
-                            <div className="app-return-thumbs"><ion-icon name="thumbs-up-outline"></ion-icon>
-                                <div className="app-feedback">localizção correta?</div>
+                            <div className="app-return-thumbs">
+                                {feedbackNegativo ? '' :
+                                    <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
+                                }
+                                <div className="app-feedback">
 
-                                <ion-icon name="thumbs-down-outline"></ion-icon>
+                                    {feedbackPositivo ? 'Obrigado por usar o app' : ''}
+                                    {feedbackNegativo ? 'Desculpe-nos! Obrigado pelo feedback!' : ''}
+
+                                </div>
+                                {feedbackPositivo ? '' :
+                                    <ion-icon id="thumbs-down" vlaue={feedbackNegativo} onClick={handleFeedbackNegativo} name="thumbs-down-outline"></ion-icon>
+                                }
                             </div>
                         </div>
                     ) : null
