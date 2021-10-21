@@ -42,10 +42,11 @@ body {
 .app-bloco {
     display: grid;
     padding: 15px;
-    grid-template-rows: .9fr .7fr 2fr;
+    grid-template-rows: auto;
     justify-items: center;
     min-width: 480px;
     max-width: 520px;
+    min-height: 480px;
     height: auto;
     gap: 10px;
     margin: auto;
@@ -167,29 +168,29 @@ body {
 
 .app-return-thumbs {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
-
-    gap: 15px;
+    gap: 7px;
 }
 
 .app-feedback {
     display: flex;
     font-size: .9rem;
     font-weight: bolder;
-    margin-top: 60px;
     padding: 15px;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
 }
 
 #thumbs-up,
 #thumbs-down {
     cursor: pointer;
+    border-radius: 100%;
+    padding: 15px;
 }
 
 #thumbs-up:hover,
 #thumbs-down:hover {
     cursor: pointer;
-    opacity: .4;
+    background-color: rgba(255, 255, 255, 0.822);
 }

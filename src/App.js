@@ -17,7 +17,7 @@ function App() {
 
     //recebe os erros da api
 
-    // const [error, setError] = useState(null); // estado de erro
+    const [defineErro, setError] = useState(null); // estado de erro
 
     // feedback positivo
 
@@ -58,15 +58,24 @@ function App() {
         setFeedbackNegativo(false);
 
         fetch(`${API_URL}key=${API_KEY}&q=${BuscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
+
             if (response.status === 200) {
                 return response.json();
+            } else {
+                throw new Error(response.status);
             }
-        }).then((data) => {
+        }
+
+        ).then((data) => {
 
             setForecast(data);
             setComplete(true);
             setBuscaCidade("");
             setSearching(false);
+
+        }).catch((erro) => {
+            setError(erro);
+            console.log(erro);
         });
 
     }
@@ -100,10 +109,8 @@ function App() {
                                 }
 
                                 <div className="app-feedback">
-
                                     {feedbackPositivo ? 'Obrigado por usar o app' : ''}
                                     {feedbackNegativo ? 'Desculpe-nos! Obrigado pelo feedback!' : ''}
-
                                 </div>
                                 {feedbackPositivo ? '' :
                                     <ion-icon id="thumbs-down" vlaue={feedbackNegativo} onClick={handleFeedbackNegativo} name="thumbs-down-outline"></ion-icon>
@@ -111,7 +118,8 @@ function App() {
                             </div>
                         </div>
                     ) : null
-                }</div>
+                }
+                </div>
             </div>
         </>
     );
