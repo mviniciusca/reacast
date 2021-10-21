@@ -17,7 +17,7 @@ function App() {
 
     //recebe os erros da api
 
-    const [defineErro, setError] = useState(null); // estado de erro
+    //const [defineErro, setError] = useState(null); // estado de erro
 
     // feedback positivo
 
@@ -73,9 +73,8 @@ function App() {
             setBuscaCidade("");
             setSearching(false);
 
-        }).catch((erro) => {
-            setError(erro);
-            console.log(erro);
+        }).catch(err => {
+            console.error(err);
         });
 
     }
