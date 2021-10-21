@@ -15,16 +15,22 @@ function App() {
 
     const [forecast, setForecast] = useState(null) // como é um objeto, pode ser null;
 
+    // Searching State
+
+    const [isSearching, setSearching] = useState(false);
+
     // função que vai manipular o form no modo onchange;
     const handleBuscaCidadeChange = (element) => {
         setBuscaCidade(element.target.value); // obtém o valor digitado 
     }
     const buscaPrevisaoTempo = () => {
+        setSearching(true);
         fetch(`${API_URL}key=${API_KEY}&q=${BuscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
             if (response.status === 200) {
                 return response.json();
             }
         }).then((data) => {
+            setSearching(false);
             setForecast(data);
         });
     }
@@ -41,7 +47,7 @@ function App() {
                     <div className="app-main-title">Busque uma Cidade <span className="sub-title"> <ion-icon name="flag-outline"></ion-icon> Trends: Rio de Janeiro, Tokyo, Paris, Brisbane, Istambul</span></div>
                     <div className="app-react-form">
                         <input type="text" name="buscaCidade" className="app-input" value={BuscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
-                        <button onClick={buscaPrevisaoTempo} className="busca-btn"><ion-icon name="search-outline"></ion-icon></button>
+                        <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
                     </div>
                 </div>
                 <div className="app-result">{
