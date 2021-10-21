@@ -5,11 +5,12 @@ na localizaçao obtida pelo próprio app ao receber a cidade digita.
 
 ## 🧪 Features
 
--[x] Busca com todas as cidades do Mundo; 
--[x] Resultado na mesma tela; 
--[x] Loading de Busca; 
--[ ] Trazer aeroportos por perto; 
--[ ] Retorar erros da API
+- [x] Busca com todas as cidades do Mundo; 
+- [x] Resultado na mesma tela; 
+- [x] Loading de Busca; 
+- [ ] Trazer aeroportos por perto; 
+- [ ] Retornar erros da API;
+- [ ] Trazer o clima;
 
 ## 🔨 Tecnologias
 
