@@ -24,7 +24,7 @@ body {
 }
 
 body {
-    background-color: var(--lightcolor);
+    background-color: #b3e7e9;
     font-family: 'Noto Sans Mono', monospace;
     font-size: 1.6em;
 }
@@ -39,20 +39,28 @@ body {
 .app-bloco {
     display: grid;
     padding: 15px;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: .8fr .6fr 1fr;
     justify-items: center;
-    max-width: 580px;
+    min-width: 480px;
+    max-width: 520px;
     height: 90vh;
     gap: 10px;
     margin: auto;
     text-align: center;
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    background-color: #efefef;
+    background-image: linear-gradient(152deg, #91dbff 0%, #eefcc3 100%);
     border-radius: 15px;
+    box-shadow: 0px 40px 16px -20px rgb(0 0 0 / 25%), 10px 40px 16px -20px rgb(0 0 0 / 25%);
+    border: solid 1px rgb(255 255 255 / 70%);
+    border-top: solid 7px rgb(255 255 255 / 70%);
 }
 
 .transparencia {
     opacity: .9;
+}
+
+.strong {
+    font-weight: bolder;
 }
 
 .icon-logo {
@@ -113,4 +121,44 @@ body {
 .busca-btn:hover {
     opacity: .7;
     cursor: pointer;
+}
+
+.app-return-wrapper {
+    display: grid;
+}
+
+.app-return-weather {
+    font-size: 4rem;
+    letter-spacing: -.5rem;
+}
+
+#temp {
+    font-size: 2.1rem;
+    margin-left: -.1rem;
+}
+
+.app-return-text {
+    font-size: 1.6rem;
+}
+
+.app-return-city {
+    font-size: 1.2rem;
+}
+
+.app-return-thumbs {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+    gap: 15px;
+}
+
+.app-feedback {
+    display: flex;
+    font-size: .9rem;
+    font-weight: bolder;
+    margin-top: 60px;
+    padding: 15px;
+    align-items: baseline;
+    justify-content: center;
 }

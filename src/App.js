@@ -15,17 +15,29 @@ function App() {
 
     const [forecast, setForecast] = useState(null) // como é um objeto, pode ser null;
 
+    //recebe os erros da api
+
+    const [error, setError] = useState(null); // estado de erro
+
     // Searching State
 
     const [isSearching, setSearching] = useState(false);
+
+    // Logo change
+
+    const [isComplete, setComplete] = useState(null);
+
+    // Inicial State
 
     // função que vai manipular o form no modo onchange;
     const handleBuscaCidadeChange = (element) => {
         setBuscaCidade(element.target.value); // obtém o valor digitado 
     }
     const buscaPrevisaoTempo = () => {
+
         setSearching(true);
-        setBuscaCidade("");
+        setComplete(false);
+
         fetch(`${API_URL}key=${API_KEY}&q=${BuscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -33,7 +45,10 @@ function App() {
         }).then((data) => {
             setSearching(false);
             setForecast(data);
+            setComplete(true);
+            setBuscaCidade("");
         });
+
     }
 
     // não mexer -> retorna meu app pronto com html
@@ -41,7 +56,7 @@ function App() {
         <>
             <div className="app-bloco animate__animated  animate__fadeInUp">
                 <div className="app-logo">
-                    <div className="icon-logo"><ion-icon name="cloud-outline"></ion-icon></div>
+                    <div className="icon-logo">{isComplete ? <ion-icon name="cloud-done-outline"></ion-icon> : <ion-icon name="cloud-outline"></ion-icon>}</div>
                     <div className="app-name">Rea<strong>c</strong>ast</div>
                 </div>
                 <div className="app-main">
@@ -54,10 +69,15 @@ function App() {
                 <div className="app-result">{
                     forecast ? (
                         <div className="app-return-wrapper">
-                            <div className="app-return-img"><img alt="imagem" width="80" height="80" src={forecast.current.condition.icon}></img></div>
+                            <div className="app-return-img"><img alt="imagem" width="60" height="60" src={forecast.current.condition.icon}></img></div>
+                            <div className="app-return-weather strong">{forecast.current.temp_c}°<span id="temp">C</span></div>
                             <div className="app-return-text">{forecast.current.condition.text}</div>
-                            <div className="app-return-city">{forecast.location.name}</div>
-                            <div className="app-return-country">{forecast.location.country}</div>
+                            <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
+                            <div className="app-return-thumbs"><ion-icon name="thumbs-up-outline"></ion-icon>
+                                <div className="app-feedback">localizção correta?</div>
+
+                                <ion-icon name="thumbs-down-outline"></ion-icon>
+                            </div>
                         </div>
                     ) : null
                 }</div>

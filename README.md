@@ -10,7 +10,7 @@ na localizaçao obtida pelo próprio app ao receber a cidade digita.
 - [x] Loading de Busca; 
 - [ ] Trazer aeroportos por perto; 
 - [ ] Retornar erros da API;
-- [ ] Trazer o clima;
+- [x] Trazer o clima;
 - [x] Apagar o formulário depois da busca;
 
 ## 🔨 Tecnologias
