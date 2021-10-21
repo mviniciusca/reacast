@@ -26,3 +26,8 @@ Aplicativo baseado em React que traz a previsão do tempo das cidades, utilizand
 ## 📌 Status
 
 Desenvolvimento
+
+## ⚡️ Autor 
+
+<a href="https://twitter.com/marcosvca_">Marcos Coelho</a>
+
