@@ -25,6 +25,7 @@ function App() {
     }
     const buscaPrevisaoTempo = () => {
         setSearching(true);
+        setBuscaCidade("");
         fetch(`${API_URL}key=${API_KEY}&q=${BuscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
             if (response.status === 200) {
                 return response.json();
