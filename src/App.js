@@ -23,7 +23,6 @@ function App() {
 
     const [feedbackPositivo, setFeedbackPositivo] = useState(false);
     const handleFeedback = () => {
-        console.log('+1');
         setFeedbackPositivo(true);
     }
 
@@ -31,7 +30,6 @@ function App() {
 
     const [feedbackNegativo, setFeedbackNegativo] = useState(false);
     const handleFeedbackNegativo = () => {
-        console.log('-1');
         setFeedbackNegativo(true);
     }
 
