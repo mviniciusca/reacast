@@ -21,12 +21,12 @@ body {
     width: 100vw;
     height: 100vh;
     box-sizing: content-box;
+
 }
 
 body {
     background-color: #8BC6EC;
     background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-
     font-family: 'Noto Sans Mono', monospace;
     font-size: 1.6em;
 }
@@ -35,17 +35,18 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     height: 100vh;
-    overflow: hidden;
+
+
 }
 
 .app-bloco {
     display: grid;
     padding: 15px;
-    grid-template-rows: .8fr .6fr 1fr;
+    grid-template-rows: .9fr .7fr 2fr;
     justify-items: center;
     min-width: 480px;
     max-width: 520px;
-    height: 90vh;
+    height: auto;
     gap: 10px;
     margin: auto;
     text-align: center;
@@ -106,6 +107,22 @@ body {
     display: flex;
 }
 
+::-webkit-input-placeholder {
+    /* Edge */
+    color: #c2c2c2;
+    font-size: .9rem;
+}
+
+:-ms-input-placeholder {
+    color: #c2c2c2;
+    font-size: .9rem;
+}
+
+::placeholder {
+    color: #c2c2c2;
+    font-size: .9rem;
+}
+
 .busca-btn {
     display: flex;
     align-items: center;
@@ -145,6 +162,7 @@ body {
 
 .app-return-city {
     font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .app-return-thumbs {

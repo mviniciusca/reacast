@@ -62,10 +62,11 @@ function App() {
                 return response.json();
             }
         }).then((data) => {
-            setSearching(false);
+
             setForecast(data);
             setComplete(true);
             setBuscaCidade("");
+            setSearching(false);
         });
 
     }
@@ -73,7 +74,7 @@ function App() {
     // não mexer -> retorna meu app pronto com html
     return (
         <>
-            <div className="app-bloco animate__animated  animate__fadeInUp">
+            <div className="app-bloco">
                 <div className="app-logo">
                     <div className="icon-logo">{isComplete ? <ion-icon name="cloud-done-outline"></ion-icon> : <ion-icon name="cloud-outline"></ion-icon>}</div>
                     <div className="app-name">Rea<strong>c</strong>ast</div>
@@ -92,10 +93,12 @@ function App() {
                             <div className="app-return-weather strong">{forecast.current.temp_c}°<span id="temp">C</span></div>
                             <div className="app-return-text">{forecast.current.condition.text}</div>
                             <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
+                            <div className="app-feedback">localização correta?</div>
                             <div className="app-return-thumbs">
                                 {feedbackNegativo ? '' :
                                     <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
                                 }
+
                                 <div className="app-feedback">
 
                                     {feedbackPositivo ? 'Obrigado por usar o app' : ''}
