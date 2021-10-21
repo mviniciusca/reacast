@@ -1,38 +1,116 @@
-.App {
-  text-align: center;
+/**
+marcosvca@gmail.com
+Marcos V C Augusto
+**/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;300;600&display=swap');
+
+:root {
+    --lightcolor: #e4e7fa;
+    --lighter-color: #f4f4fc;
+    --highligh-color: #3c3caf;
+    --darkcolor: #292349;
+    --darkest-color: #21212c;
+    --animate-duration: 1500ms;
+    --animate-delay: 2s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: content-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    background-color: var(--lightcolor);
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1.6em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#root {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.app-bloco {
+    display: grid;
+    padding: 15px;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: center;
+    max-width: 580px;
+    height: 90vh;
+    gap: 10px;
+    margin: auto;
+    text-align: center;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    border-radius: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.transparencia {
+    opacity: .9;
+}
+
+.icon-logo {
+    display: flex;
+    font-size: 6rem;
+    padding: 15px;
+}
+
+.app-name {
+    display: flex;
+    letter-spacing: -.1rem;
+    font-size: 2.2rem;
+}
+
+.sub-title {
+    font-size: .9rem;
+    display: flex;
+    margin-top: 5px;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.app-react-form {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.app-input {
+    background-color: var(--lighter-color);
+    color: var(--darkcolor);
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 1.4rem;
+    outline: none;
+    border-radius: 15px 0 0 15px;
+    border: solid 1px var(--lightcolor);
+    margin-top: 25px;
+    height: 40px;
+    text-align: center;
+    font-weight: bolder;
+    display: flex;
+}
+
+.busca-btn {
+    display: flex;
+    align-items: center;
+    background-color: var(--darkest-color);
+    color: var(--lightcolor);
+    font-size: 1rem;
+    padding: 15px;
+    height: 45px;
+    width: 70px;
+    border-radius: 0 15px 15px 0;
+    justify-content: center;
+    border: solid 1px var(--darkest-color);
+}
+
+.busca-btn:hover {
+    opacity: .7;
+    cursor: pointer;
 }
