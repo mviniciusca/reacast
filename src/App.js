@@ -2,11 +2,14 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-    // configurações da api
-    const API_URL = 'https://api.weatherapi.com/v1/current.json?';
-    const API_KEY = '119b8e810764437390851003212110';
-    const API_LANG = 'pt';
-    const API_AQI = 'yes';
+
+
+    /** Recebe os dados da API  da previsão de tempo */
+
+    const API_URL = process.env.REACT_APP_API_URL;
+    const API_KEY = process.env.REACT_APP_API_KEY;
+    const API_LANG = process.env.REACT_APP_API_LANG;
+    const API_AQI = process.env.REACT_APP_API_AQI;
 
     // começo da aplicação em JS
     const [buscaCidade, setBuscaCidade] = useState(""); // função para manipluar o form de busca;

@@ -1,0 +1,8 @@
+{
+    "emmet.includeLanguages": {
+        "javascript": "html",
+        "php": "html"
+    },
+    "editor.defaultFormatter": "HookyQR.beautify",
+    "editor.formatOnSave": true
+}
