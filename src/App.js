@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './app.css';
+import './App.css';
 
 function App() {
     // configurações da api
@@ -9,7 +9,7 @@ function App() {
     const API_AQI = 'yes';
 
     // começo da aplicação em JS
-    const [BuscaCidade, setBuscaCidade] = useState(""); // função para manipluar o form de busca;
+    const [buscaCidade, setBuscaCidade] = useState(""); // função para manipluar o form de busca;
 
     // recebe os dados da api 
 
@@ -32,8 +32,6 @@ function App() {
     const handleFeedbackNegativo = () => {
         setFeedbackNegativo(true);
     }
-
-
     // Searching State
 
     const [isSearching, setSearching] = useState(false);
@@ -55,7 +53,7 @@ function App() {
         setFeedbackPositivo(false);
         setFeedbackNegativo(false);
 
-        fetch(`${API_URL}key=${API_KEY}&q=${BuscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
+        fetch(`${API_URL}key=${API_KEY}&q=${buscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
 
             if (response.status === 200) {
                 return response.json();
@@ -88,7 +86,7 @@ function App() {
                 <div className="app-main">
                     <div className="app-main-title">Busque uma Cidade <span className="sub-title"> <ion-icon name="flag-outline"></ion-icon> Trends: Rio de Janeiro, Tokyo, Paris, Brisbane, Istambul</span></div>
                     <div className="app-react-form">
-                        <input type="text" name="buscaCidade" className="app-input" value={BuscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
+                        <input type="text" name="buscaCidade" className="app-input" value={buscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
                         <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
                     </div>
                 </div>
