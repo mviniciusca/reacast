@@ -12,6 +12,14 @@ function App() {
     const API_LANG = process.env.REACT_APP_API_LANG
     const API_AQI = process.env.REACT_APP_API_AQI
 
+
+    // recebe os dados da api do aeroporto
+
+    const [error400, setError400] = useState("");
+    const [error401, setError401] = useState("");
+    const [errorUnexpected, setErrorUnxpected] = useState("");
+
+
     //exibe o app
     const [hiddenApp, setHiddenApp] = useState(false);
 
@@ -27,6 +35,9 @@ function App() {
 
     // recebe os dados da api 
     const [forecast, setForecast] = useState(null)
+
+    //
+    const [aeroporto, setAirport] = useState(null)
 
     // feedback positivo
     const [feedbackPositivo, setFeedbackPositivo] = useState(false);
@@ -63,29 +74,49 @@ function App() {
             if (response.status === 200) {
                 setComplete(true);
                 setHiddenApp(true);
+                setError401(false);
+                setError400(false);
+                setErrorUnxpected(false);
                 return response.json()
             }
             else if (response.status === 400) {
 
-                //handle erros 400 aqui
+                setError400(true);
 
             }
-            else if (response.status === 500) {
+            else if (response.status === 401) {
 
-                //handle erros 500 aqui
+                setError401(true);
 
             }
             else {
 
-                //handle erros gerais aqui
-
+                setErrorUnxpected(true);
                 setComplete(false);
             }
         }).then((data) => {
             setForecast(data);
             setBuscaCidade("");
             setSearching(false);
+
+        });
+
+        // AeroDataBox 
+        fetch("https://aerodatabox.p.rapidapi.com/airports/search/location/-22.734518/-43.319799/km/100/1?withFlightInfoOnly=true", {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "aerodatabox.p.rapidapi.com",
+                "x-rapidapi-key": "e4eac7ba6cmsh1ac573be6029344p12126cjsn9e7c3aefe57b"
+            }
         })
+            .then(response => {
+                return response.json();
+
+            }).then(response => response.json())
+            .then(data => this.setAirport({ data }))
+            .catch(err => {
+                console.error(err);
+            });
     }
 
     // não mexer -> retorna meu app pronto com html
@@ -105,7 +136,14 @@ function App() {
                             <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
                         </div>
                     </div>
-                    <div className="app-error-handler"></div>
+                    <div className="app-error-handler">
+
+                        {error400 ? 'Busque por uma localização válida. Erro 400' : null}
+                        {error401 ? 'Ocorreu um erro com a API. Erro 401' : null}
+                        {errorUnexpected ? 'Erro Inesperado!' : null}
+
+
+                    </div>
                 </div>
 
                 <div className="app-result" id={hiddenApp ? "show" : "hidden"} >{
@@ -119,6 +157,7 @@ function App() {
                             <div className="app-return-text">{forecast.current.condition.text}</div>
                             <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
                             <div className="app-feedback">localização correta?</div>
+                            <div>  </div>
                             <div className="app-return-thumbs">
                                 {feedbackNegativo ? '' :
                                     <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
