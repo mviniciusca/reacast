@@ -105,8 +105,8 @@ function App() {
         fetch("https://aerodatabox.p.rapidapi.com/airports/search/location/-22.734518/-43.319799/km/100/1?withFlightInfoOnly=true", {
             "method": "GET",
             "headers": {
-                "x-rapidapi-host": "aerodatabox.p.rapidapi.com",
-                "x-rapidapi-key": "e4eac7ba6cmsh1ac573be6029344p12126cjsn9e7c3aefe57b"
+                "x-rapidapi-host": process.env.REACT_APP_DATABOX_KEY,
+                "x-rapidapi-key": process.env.REACT_APP_DATABOX_HOST
             }
         })
             .then(response => {
