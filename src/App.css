@@ -2,7 +2,7 @@
 marcosvca@gmail.com
 Marcos V C Augusto
 **/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;300;600&family=Roboto+Mono:wght@300;500;700&display=swap');
 
 :root {
     --lightcolor: #e4e7fa;
@@ -26,17 +26,31 @@ body {
 
 body {
     background-color: #8BC6EC;
-    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-    font-family: 'Noto Sans Mono', monospace;
+    background-image: linear-gradient(135deg, #a8cfff 0%, #b395e2 100%);
+    font-family: 'Roboto Mono', 'Noto Sans Mono', monospace;
     font-size: 1.6em;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #root {
     display: grid;
     grid-template-columns: 1fr;
+    align-content: center;
     height: 100vh;
+    width: 100vw;
 
 
+}
+
+a:link,
+a:visited {
+    color: var(--darkcolor);
+    display: flex;
+}
+
+a:hover {
+    opacity: .7;
 }
 
 .app-bloco {
@@ -46,7 +60,7 @@ body {
     justify-items: center;
     min-width: 480px;
     max-width: 520px;
-    min-height: 480px;
+    min-height: 580px;
     height: auto;
     gap: 10px;
     margin: auto;
@@ -56,7 +70,7 @@ body {
     border-radius: 15px;
     box-shadow: 0px 40px 16px -20px rgb(0 0 0 / 25%), 10px 40px 16px -20px rgb(0 0 0 / 25%);
     border: solid 1px rgb(255 255 255 / 70%);
-    border-top: solid 7px rgb(255 255 255 / 70%);
+    border-top: solid 3px rgb(255 255 255 / 70%);
 }
 
 .transparencia {
@@ -96,7 +110,7 @@ body {
 .app-input {
     background-color: var(--lighter-color);
     color: var(--darkcolor);
-    font-family: 'Noto Sans Mono', monospace;
+    font-family: 'Roboto Mono', 'Noto Sans Mono', monospace;
     font-size: 1.4rem;
     outline: none;
     border-radius: 15px 0 0 15px;
@@ -145,6 +159,7 @@ body {
 
 .app-return-wrapper {
     display: grid;
+    min-width: 320px;
 }
 
 .app-return-weather {
@@ -182,15 +197,64 @@ body {
     justify-content: center;
 }
 
+.app-new-search {
+    display: none;
+    font-size: 2rem;
+
+
+}
+
+.app-result {
+    display: flex;
+}
+
+.app-error-handler {
+    display: flex;
+    font-size: .9rem;
+}
+
 #thumbs-up,
-#thumbs-down {
+#thumbs-down,
+#clear-app {
     cursor: pointer;
     border-radius: 100%;
     padding: 15px;
 }
 
 #thumbs-up:hover,
-#thumbs-down:hover {
+#thumbs-down:hover,
+#clear-app:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.822);
+}
+
+footer {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    margin-top: 60px;
+    color: var(--darkcolor);
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+
+}
+
+.hiddenApp {
+    display: grid;
+    grid-template-rows: auto;
+    justify-items: center;
+}
+
+#hidden {}
+
+#show {
+    display: flex;
 }

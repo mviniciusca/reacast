@@ -1,49 +1,51 @@
 import { useState } from 'react';
 import './App.css';
+import Footer from './components/Footer/Footer.js';
 
 function App() {
 
 
-    /** Recebe os dados da API  da previsão de tempo */
+    //recebe dados da api da previsão do tempo
 
-    const API_URL = process.env.REACT_APP_API_URL;
-    const API_KEY = process.env.REACT_APP_API_KEY;
-    const API_LANG = process.env.REACT_APP_API_LANG;
-    const API_AQI = process.env.REACT_APP_API_AQI;
+    const API_URL = process.env.REACT_APP_API_URL
+    const API_KEY = process.env.REACT_APP_API_KEY
+    const API_LANG = process.env.REACT_APP_API_LANG
+    const API_AQI = process.env.REACT_APP_API_AQI
+
+    //exibe o app
+    const [hiddenApp, setHiddenApp] = useState(false);
+
+    // Initial State 
+
+    const [homepage, setHomepage] = useState(false);
+    const handleHomepage = () => {
+        setHomepage(true);
+    }
 
     // começo da aplicação em JS
-    const [buscaCidade, setBuscaCidade] = useState(""); // função para manipluar o form de busca;
+    const [buscaCidade, setBuscaCidade] = useState("");
 
     // recebe os dados da api 
-
-    const [forecast, setForecast] = useState(null) // como é um objeto, pode ser null;
-
-    //recebe os erros da api
-
-    //const [defineErro, setError] = useState(null); // estado de erro
+    const [forecast, setForecast] = useState(null)
 
     // feedback positivo
-
     const [feedbackPositivo, setFeedbackPositivo] = useState(false);
     const handleFeedback = () => {
         setFeedbackPositivo(true);
     }
 
     //feedback negativo
-
     const [feedbackNegativo, setFeedbackNegativo] = useState(false);
     const handleFeedbackNegativo = () => {
         setFeedbackNegativo(true);
     }
-    // Searching State
 
+    // Searching State
     const [isSearching, setSearching] = useState(false);
 
     // Logo change
-
     const [isComplete, setComplete] = useState(null);
 
-    // Inicial State
 
     // função que vai manipular o form no modo onchange;
     const handleBuscaCidadeChange = (element) => {
@@ -51,52 +53,68 @@ function App() {
     }
     const buscaPrevisaoTempo = () => {
 
-        setSearching(true);
         setComplete(false);
         setFeedbackPositivo(false);
         setFeedbackNegativo(false);
+        setSearching(true)
 
         fetch(`${API_URL}key=${API_KEY}&q=${buscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
 
             if (response.status === 200) {
-                return response.json();
-            } else {
-                throw new Error(response.status);
+                setComplete(true);
+                setHiddenApp(true);
+                return response.json()
             }
-        }
+            else if (response.status === 400) {
 
-        ).then((data) => {
+                //handle erros 400 aqui
 
+            }
+            else if (response.status === 500) {
+
+                //handle erros 500 aqui
+
+            }
+            else {
+
+                //handle erros gerais aqui
+
+                setComplete(false);
+            }
+        }).then((data) => {
             setForecast(data);
-            setComplete(true);
             setBuscaCidade("");
             setSearching(false);
-
-        }).catch(err => {
-            console.error(err);
-        });
-
+        })
     }
 
     // não mexer -> retorna meu app pronto com html
     return (
         <>
+
             <div className="app-bloco">
-                <div className="app-logo">
-                    <div className="icon-logo">{isComplete ? <ion-icon name="cloud-done-outline"></ion-icon> : <ion-icon name="cloud-outline"></ion-icon>}</div>
-                    <div className="app-name">Rea<strong>c</strong>ast</div>
-                </div>
-                <div className="app-main">
-                    <div className="app-main-title">Busque uma Cidade <span className="sub-title"> <ion-icon name="flag-outline"></ion-icon> Trends: Rio de Janeiro, Tokyo, Paris, Brisbane, Istambul</span></div>
-                    <div className="app-react-form">
-                        <input type="text" name="buscaCidade" className="app-input" value={buscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
-                        <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
+                <div className="hiddenApp" id={hiddenApp ? "hidden" : "main-app"}>
+                    <div className="app-logo">
+                        <div className="icon-logo">{isComplete ? <ion-icon name="cloud-done-outline"></ion-icon> : <ion-icon name="cloud-outline"></ion-icon>}</div>
+                        <div className="app-name">Rea<strong>c</strong>ast</div>
                     </div>
+                    <div className="app-main">
+                        <div className="app-main-title">Busque uma Cidade <span className="sub-title"> <ion-icon name="flag-outline"></ion-icon> Trends: Rio de Janeiro, Tokyo, Paris, Brisbane, Istambul</span></div>
+                        <div className="app-react-form">
+                            <input type="text" name="buscaCidade" className="app-input" value={buscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
+                            <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
+                        </div>
+                    </div>
+                    <div className="app-error-handler"></div>
                 </div>
-                <div className="app-result">{
+
+                <div className="app-result" id={hiddenApp ? "show" : "hidden"} >{
                     forecast ? (
                         <div className="app-return-wrapper">
-                            <div className="app-return-img"><img alt="imagem" width="60" height="60" src={forecast.current.condition.icon}></img></div>
+                            <div className="app-new-search">
+                                <ion-icon id="clear-app" name="close-outline" value={homepage} onClick={handleHomepage}></ion-icon>
+                            </div>
+                            <div className="app-return-img"><img alt="imagem" src={forecast.current.condition.icon}></img></div>
                             <div className="app-return-weather strong">{forecast.current.temp_c}°<span id="temp">C</span></div>
                             <div className="app-return-text">{forecast.current.condition.text}</div>
                             <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
@@ -118,7 +136,10 @@ function App() {
                     ) : null
                 }
                 </div>
+
             </div>
+            <Footer></Footer>
+
         </>
     );
 }

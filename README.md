@@ -20,15 +20,16 @@ Baseado no Workshop fornecido pela Escola Britânica de Artes Criativas e Tecnol
 - [ ] Resetar o app ao estado inicial;
 - [x] Sistema de Feedback;
 - [ ] Obter Localização no Navegador;
+- [ ] Split o app em componentes independentes;
 
 ## 🔨 Tecnologias
 
 - React / Javascript
 - HTML / CSS
 
-## 📌 Status
+## 📌 Status do Projeto
 
-Desenvolvimento
+Em Desenvolvimento
 
 ## ⚡️ Autor 
 
