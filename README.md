@@ -19,7 +19,7 @@ Baseado no Workshop fornecido pela Escola Britânica de Artes Criativas e Tecnol
 - [x] Apagar o formulário depois da busca;
 - [ ] Resetar o app ao estado inicial;
 - [x] Sistema de Feedback;
-- [ ] Obter Localização no Navegador;
+- [x] Obter Localização no Navegador;
 - [ ] Split o app em componentes independentes;
 
 ## 🔨 Tecnologias
