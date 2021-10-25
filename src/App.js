@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer.js';
+import Localfinder from './components/Localfinder/Localfinder';
 
 function App() {
 
@@ -14,6 +15,14 @@ function App() {
 
 
     // recebe os dados da api do aeroporto
+
+    const USER_LAT = "-22.734518";
+    const USER_LONG = "-43.319799";
+    const API_MAX_AIRPORTS = "3";
+    const API_ONLY_FLIGHTS = true;
+    const API_RADIUS = "100";
+
+    //
 
     const [error400, setError400] = useState("");
     const [error401, setError401] = useState("");
@@ -102,11 +111,11 @@ function App() {
         });
 
         // AeroDataBox 
-        fetch("https://aerodatabox.p.rapidapi.com/airports/search/location/-22.734518/-43.319799/km/100/1?withFlightInfoOnly=true", {
+        fetch(`https://aerodatabox.p.rapidapi.com/airports/search/location/${USER_LAT}/${USER_LONG}/km/${API_RADIUS}/${API_MAX_AIRPORTS}?withFlightInfoOnly=${API_ONLY_FLIGHTS}`, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-host": process.env.REACT_APP_DATABOX_KEY,
-                "x-rapidapi-key": process.env.REACT_APP_DATABOX_HOST
+                "x-rapidapi-host": "aerodatabox.p.rapidapi.com",
+                "x-rapidapi-key": "e4eac7ba6cmsh1ac573be6029344p12126cjsn9e7c3aefe57b"
             }
         })
             .then(response => {
@@ -123,19 +132,21 @@ function App() {
     return (
         <>
 
-            <div className="app-bloco">
+            <div className={error400 ? "animate__animated animate__wobble app-bloco class-error" : "app-bloco"}>
+
                 <div className="hiddenApp" id={hiddenApp ? "hidden" : "main-app"}>
                     <div className="app-logo">
                         <div className="icon-logo">{isComplete ? <ion-icon name="cloud-done-outline"></ion-icon> : <ion-icon name="cloud-outline"></ion-icon>}</div>
                         <div className="app-name">Rea<strong>c</strong>ast</div>
                     </div>
                     <div className="app-main">
-                        <div className="app-main-title">Busque uma Cidade <span className="sub-title"> <ion-icon name="flag-outline"></ion-icon> Trends: Rio de Janeiro, Tokyo, Paris, Brisbane, Istambul</span></div>
+                        <div className="app-main-title">Busque uma Cidade </div>
                         <div className="app-react-form">
                             <input type="text" name="buscaCidade" className="app-input" value={buscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
                             <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
                         </div>
                     </div>
+                    <Localfinder />
                     <div className="app-error-handler">
 
                         {error400 ? 'Busque por uma localização válida. Erro 400' : null}
@@ -177,7 +188,7 @@ function App() {
                 </div>
 
             </div>
-            <Footer></Footer>
+            <Footer />
 
         </>
     );

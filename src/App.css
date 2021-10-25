@@ -25,12 +25,16 @@ body {
 }
 
 body {
-    background-color: #8BC6EC;
-    background-image: linear-gradient(135deg, #a8cfff 0%, #b395e2 100%);
+    background-color: #aafab1;
+    background-image: linear-gradient(135deg, #9177f9 0%, #ed8ac9 100%);
     font-family: 'Roboto Mono', 'Noto Sans Mono', monospace;
     font-size: 1.6em;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.class-error {
+    background-image: linear-gradient(156deg, #ff46b6 0%, #ffa1a1 100%) !important;
 }
 
 #root {
@@ -41,6 +45,10 @@ body {
     width: 100vw;
 
 
+}
+
+li {
+    list-style-type: none;
 }
 
 a:link,
@@ -58,19 +66,23 @@ a:hover {
     padding: 15px;
     grid-template-rows: auto;
     justify-items: center;
-    min-width: 480px;
+    min-width: 402px;
     max-width: 520px;
     min-height: 580px;
     height: auto;
+    grid-gap: 10px;
     gap: 10px;
     margin: auto;
     text-align: center;
-    background-color: #efefef;
-    background-image: linear-gradient(152deg, #91dbff 0%, #eefcc3 100%);
+    background-color: #b0a1e8;
+    background-image: linear-gradient(152deg, #aff9aa 0%, #96fdce 100%);
     border-radius: 15px;
     box-shadow: 0px 40px 16px -20px rgb(0 0 0 / 25%), 10px 40px 16px -20px rgb(0 0 0 / 25%);
-    border: solid 1px rgb(255 255 255 / 70%);
-    border-top: solid 3px rgb(255 255 255 / 70%);
+    border: solid 2px rgb(255 255 255 / 35%);
+}
+
+.app-main-title {
+    font-size: 1rem;
 }
 
 .transparencia {
@@ -83,22 +95,55 @@ a:hover {
 
 .icon-logo {
     display: flex;
-    font-size: 6rem;
-    padding: 15px;
+    font-size: 4rem;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
 }
 
 .app-name {
     display: flex;
     letter-spacing: -.1rem;
-    font-size: 2.2rem;
+
 }
 
 .sub-title {
-    font-size: .9rem;
+    font-size: 1rem;
     display: flex;
     margin-top: 5px;
-    align-items: baseline;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
     gap: 10px;
+    padding: 15px;
+}
+
+.app-trends {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.app-trends-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+}
+
+.app-trends-list li {
+    display: flex;
+    padding: 7px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    gap: 10px;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.app-trends-list li:hover {
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
 }
 
 .app-react-form {
@@ -226,6 +271,24 @@ a:hover {
 #clear-app:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.822);
+}
+
+.app-finder-wrapper {
+    display: grid;
+}
+
+.app-finder-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    padding: 15px;
+
+}
+
+.app-finder-title {
+    font-size: .9rem;
+    padding: 7px;
 }
 
 footer {
