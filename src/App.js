@@ -1,10 +1,25 @@
 import { useState } from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer.js';
-import Localfinder from './components/Localfinder/Localfinder';
+//import Localfinder from './components/Localfinder/Localfinder';
 
 function App() {
 
+    //Geolocalização Google Maps
+
+
+    window.onload = function () {
+        var startPos;
+        var geoSuccess = function (position) {
+            startPos = position;
+            const latitude = startPos.coords.latitude;
+            const longitude = startPos.coords.longitude;
+
+            const geoPositionSetter = latitude + ',' + longitude;
+            setGeoPosition(geoPositionSetter);
+        };
+        navigator.geolocation.getCurrentPosition(geoSuccess);
+    };
 
     //recebe dados da api da previsão do tempo
 
@@ -22,7 +37,7 @@ function App() {
     const API_ONLY_FLIGHTS = true;
     const API_RADIUS = "100";
 
-    //
+    // tratamento de erros
 
     const [error400, setError400] = useState("");
     const [error401, setError401] = useState("");
@@ -46,7 +61,7 @@ function App() {
     const [forecast, setForecast] = useState(null)
 
     //
-    const [aeroporto, setAirport] = useState(null)
+    // const [aeroporto, setAirport] = useState(null)
 
     // feedback positivo
     const [feedbackPositivo, setFeedbackPositivo] = useState(false);
@@ -71,6 +86,40 @@ function App() {
     const handleBuscaCidadeChange = (element) => {
         setBuscaCidade(element.target.value); // obtém o valor digitado 
     }
+
+    //trend cities 
+    const [firstCity, setFirstCity] = useState(true);
+    const [secondCity, setSecondCity] = useState(true);
+    const [thirdCity, setThirdCity] = useState(true);
+
+    const handleFirstTrendCities = () => {
+
+        setFirstCity("Rio de Janeiro");
+        setBuscaCidade("Rio de Janeiro");
+
+
+    }
+
+    const handleSecondTrendCities = () => {
+        setSecondCity("Paris");
+        setBuscaCidade("Paris");
+
+    }
+
+    const handleThirdTrendCities = () => {
+        setThirdCity("Nova York");
+        setBuscaCidade("New York");
+
+    }
+
+
+    //geoposition
+    const [geoPosition, setGeoPosition] = useState(null);
+    const handleGeoSearch = () => {
+        setBuscaCidade(geoPosition);
+    }
+
+    //searching
     const buscaPrevisaoTempo = () => {
 
         setComplete(false);
@@ -121,32 +170,59 @@ function App() {
             .then(response => {
                 return response.json();
 
-            }).then(response => response.json())
-            .then(data => this.setAirport({ data }))
+            })
             .catch(err => {
                 console.error(err);
             });
     }
 
-    // não mexer -> retorna meu app pronto com html
+    // Retorna o App em HTML
     return (
         <>
 
-            <div className={error400 ? "animate__animated animate__wobble app-bloco class-error" : "app-bloco"}>
+            <div className=
+                {error400 || error401 || errorUnexpected ? "animate__animated animate__wobble  app-bloco class-error" : "app-bloco"}
+            >
 
-                <div className="hiddenApp" id={hiddenApp ? "hidden" : "main-app"}>
+                <div className="hiddenApp">
                     <div className="app-logo">
-                        <div className="icon-logo">{isComplete ? <ion-icon name="cloud-done-outline"></ion-icon> : <ion-icon name="cloud-outline"></ion-icon>}</div>
-                        <div className="app-name">Rea<strong>c</strong>ast</div>
+                        <div className="icon-logo">
+                            {
+                                isComplete ?
+                                    <ion-icon name="cloud-outline"></ion-icon> :
+                                    <ion-icon name="flash-outline"></ion-icon>
+                            }
+                        </div>
+                        <div className="app-name">Reacast</div>
                     </div>
                     <div className="app-main">
-                        <div className="app-main-title">Busque uma Cidade </div>
+                        <div className="app-main-title">Previsão do Tempo</div>
                         <div className="app-react-form">
                             <input type="text" name="buscaCidade" className="app-input" value={buscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
                             <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
                         </div>
                     </div>
-                    <Localfinder />
+                    <div className="app-finder-wrapper">
+                        <div className="app-finder-title">Ou</div>
+                        <div className="app-finder-map">
+                            <div className="animate__animated animate__shakeX animate__infinite	infinite">
+                                <ion-icon id="map-search-icon" onClick={handleGeoSearch} value={geoPosition} name="locate-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <div className="app-finder-title">Utilize minha localização atual</div>
+                        <span className="sub-title" id={hiddenApp ? "hidden" : "show"} >
+                            <div className="app-trends">
+                                <ion-icon name="flag-outline"></ion-icon>Trends
+                            </div>
+                            <div className="app-trends-list">
+                                <ul>
+                                    <li onClick={handleFirstTrendCities} value={firstCity}><ion-icon name="search-outline"></ion-icon> Rio de Janeiro</li>
+                                    <li onClick={handleSecondTrendCities} value={secondCity}><ion-icon name="search-outline"></ion-icon> Paris</li>
+                                    <li onClick={handleThirdTrendCities} value={thirdCity}><ion-icon name="search-outline"></ion-icon>Nova York</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </div>
                     <div className="app-error-handler">
 
                         {error400 ? 'Busque por uma localização válida. Erro 400' : null}
@@ -157,7 +233,7 @@ function App() {
                     </div>
                 </div>
 
-                <div className="app-result" id={hiddenApp ? "show" : "hidden"} >{
+                <div className="app-result">{
                     forecast ? (
                         <div className="app-return-wrapper">
                             <div className="app-new-search">

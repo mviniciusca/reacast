@@ -101,10 +101,33 @@ a:hover {
     justify-content: center;
 }
 
+.app-logo {
+    display: flex;
+    align-items: center;
+}
+
 .app-name {
     display: flex;
     letter-spacing: -.1rem;
+    font-weight: bold;
+    text-transform: lowercase;
 
+}
+
+.app-backside {
+    position: absolute;
+    z-index: -1;
+
+}
+
+.app-backfield {
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Roboto Mono', 'Noto Sans Mono', monospace;
+    font-size: 4rem;
+    color: hsla(0, 0%, 100%, 0.596);
 }
 
 .sub-title {
@@ -156,7 +179,7 @@ a:hover {
     background-color: var(--lighter-color);
     color: var(--darkcolor);
     font-family: 'Roboto Mono', 'Noto Sans Mono', monospace;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     outline: none;
     border-radius: 15px 0 0 15px;
     border: solid 1px var(--lightcolor);
@@ -165,22 +188,25 @@ a:hover {
     text-align: center;
     font-weight: bolder;
     display: flex;
+    margin-bottom: 10px
 }
 
 ::-webkit-input-placeholder {
     /* Edge */
-    color: #c2c2c2;
-    font-size: .9rem;
+    font-size: .8rem;
+    color: rgb(95, 95, 95);
+
 }
 
 :-ms-input-placeholder {
-    color: #c2c2c2;
-    font-size: .9rem;
+    font-size: .8rem;
+    color: rgb(95, 95, 95);
 }
 
 ::placeholder {
-    color: #c2c2c2;
-    font-size: .9rem;
+    font-size: .8rem;
+    color: rgb(95, 95, 95);
+
 }
 
 .busca-btn {
@@ -260,17 +286,19 @@ a:hover {
 
 #thumbs-up,
 #thumbs-down,
-#clear-app {
+#clear-app,
+#map-search-icon {
     cursor: pointer;
     border-radius: 100%;
     padding: 15px;
 }
 
+#map-search-icon:hover,
 #thumbs-up:hover,
 #thumbs-down:hover,
 #clear-app:hover {
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.822);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .app-finder-wrapper {
@@ -319,4 +347,8 @@ footer {
 
 #show {
     display: flex;
+}
+
+#hidden {
+    display: none;
 }
