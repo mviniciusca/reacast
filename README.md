@@ -31,8 +31,8 @@ Baseado no Workshop fornecido pela Escola Britânica de Artes Criativas e Tecnol
 
 Bibliotecas que me ajudam a montar e dar vida à este projeto
 
-- <a rel="external" target=_blank"  href="https://github.com/animate-css/animate.css">AnimateCSS</a>
-- <a rel="external" target=_blank"  href="https://github.com/ionic-team/ionicons">Ionicons</a>
+- <a href="https://github.com/animate-css/animate.css">AnimateCSS</a>
+- <a href="https://github.com/ionic-team/ionicons">Ionicons</a>
 
 
 ## 📌 Status do Projeto
