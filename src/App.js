@@ -35,12 +35,6 @@ function App() {
     //exibe o app
     const [hiddenApp, setHiddenApp] = useState(false);
 
-    //initial State 
-    const [homepage, setHomepage] = useState(false);
-    const handleHomepage = () => {
-        setHomepage(true);
-    }
-
     // começo da aplicação em JS
     const [buscaCidade, setBuscaCidade] = useState("");
 
@@ -147,7 +141,18 @@ function App() {
         });
 
     }
-
+    //initial State x Back to Initial State
+    const [homepage, setHomepage] = useState(false);
+    const handleHomepage = () => {
+        setHomepage(true);
+        setComplete(false);
+        setBuscaCidade("");
+        setForecast(null);
+        setHiddenApp(false);
+        setSearching(null);
+        setFeedbackPositivo(false);
+        setFeedbackNegativo(false);
+    }
     // app
     return (
         <>
@@ -221,7 +226,6 @@ function App() {
                                 {feedbackNegativo ? '' :
                                     <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
                                 }
-
                                 <div className="app-feedback">
                                     {feedbackPositivo ? 'Obrigado por usar o app' : ''}
                                     {feedbackNegativo ? 'Desculpe-nos! Obrigado pelo feedback!' : ''}

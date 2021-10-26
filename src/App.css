@@ -50,8 +50,6 @@ body {
     margin: auto;
     justify-content: center;
     align-items: center;
-
-
 }
 
 /** Gerais **/
@@ -271,7 +269,7 @@ a:hover {
 }
 
 .app-new-search {
-    display: none;
+
     font-size: 2rem;
 
 }

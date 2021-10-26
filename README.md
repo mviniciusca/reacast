@@ -16,7 +16,7 @@ Baseado no Workshop fornecido pela Escola Britânica de Artes Criativas e Tecnol
 - [x] Retornar erros da API;
 - [x] Trazer o clima;
 - [x] Apagar o formulário depois da busca;
-- [ ] Resetar o app ao estado inicial após uma busca;
+- [x] Resetar o app ao estado inicial após uma busca;
 - [x] Sistema de Feedback;
 - [x] Obter Localização no Navegador;
 - [ ] Trazer aeroportos por perto usando a localização obtida pela resposta da API do tempo e com a API AeroDataBox;
