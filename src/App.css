@@ -85,6 +85,12 @@ a:hover {
     font-size: 1rem;
 }
 
+.app-main {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
 .transparencia {
     opacity: .9;
 }
