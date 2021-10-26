@@ -16,22 +16,16 @@ function App() {
             const geoPositionSetter = latitude + ',' + longitude;
             setGeoPosition(geoPositionSetter);
 
-            getLatitude(latitude);
-            getLongitude(longitude);
+            // getLatitude(latitude);
+            //getLongitude(longitude);
 
         };
         navigator.geolocation.getCurrentPosition(geoSuccess);
     };
 
-    //recebe dados da api da previsão do tempo
-    const API_URL = process.env.REACT_APP_API_URL
-    const API_KEY = process.env.REACT_APP_API_KEY
-    const API_LANG = process.env.REACT_APP_API_LANG
-    const API_AQI = process.env.REACT_APP_API_AQI
-
     //geolocalization state
-    const [getLat, getLatitude] = useState(null);
-    const [getLon, getLongitude] = useState(null);
+    // const [getLat, getLatitude] = useState(null);
+    // const [getLon, getLongitude] = useState(null);
 
     // tratamento de erros
     const [error400, setError400] = useState("");
@@ -105,6 +99,13 @@ function App() {
         setBuscaCidade(geoPosition);
     }
 
+    //recebe dados da api da previsão do tempo
+    const API_URL = process.env.REACT_APP_API_URL
+    const API_KEY = process.env.REACT_APP_API_KEY
+    const API_LANG = process.env.REACT_APP_API_LANG
+    const API_AQI = process.env.REACT_APP_API_AQI
+    const API_MOUNT_URL = `${API_URL}key=${API_KEY}&q=${buscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`;
+
     //searching
     const buscaPrevisaoTempo = () => {
 
@@ -113,7 +114,7 @@ function App() {
         setFeedbackNegativo(false);
         setSearching(true)
 
-        fetch(`${API_URL}key=${API_KEY}&q=${buscaCidade}&aqi=${API_AQI}&lang=${API_LANG}`).then((response) => {
+        fetch(API_MOUNT_URL).then((response) => {
 
             if (response.status === 200) {
                 setComplete(true);
@@ -152,15 +153,19 @@ function App() {
         <>
 
             <div className={
-                error400 || error401 || errorUnexpected ? "animate__animated animate__wobble  app-bloco class-error" : "app-bloco"
-            }>
+                error400 || error401 || errorUnexpected ? "animate__animated animate__wobble  app-bloco class-error" :
+                    isComplete ? "animate__animated animate__pulse app-bloco " : "app-bloco"
+            }
+
+            >
                 <div className="hiddenApp">
                     <div className="app-logo">
                         <div className="icon-logo">
                             {
-                                isComplete ?
-                                    <ion-icon name="cloud-outline"></ion-icon> :
-                                    <ion-icon name="flash-outline"></ion-icon>
+                                isComplete ? <ion-icon name="cloud-outline"></ion-icon> :
+                                    error400 || error401 || errorUnexpected ? <ion-icon name="thunderstorm-outline"></ion-icon> :
+                                        <ion-icon name="flash-outline"></ion-icon>
+
                             }
                         </div>
                         <div className="app-name">Reacast</div>
