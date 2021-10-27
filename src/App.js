@@ -159,10 +159,8 @@ function App() {
 
             <div className={
                 error400 || error401 || errorUnexpected ? "animate__animated animate__wobble  app-bloco class-error" :
-                    isComplete ? "animate__animated animate__pulse app-bloco " : "app-bloco"
-            }
-
-            >
+                    isComplete ? "animate__animated app-bloco " : "app-bloco"
+            }>
                 <div className="hiddenApp">
                     <div className="app-logo">
                         <div className="icon-logo">
@@ -224,14 +222,20 @@ function App() {
                             <div className="app-airport-wrapper"></div>
                             <div className="app-return-thumbs">
                                 {feedbackNegativo ? '' :
-                                    <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
+                                    <span className={feedbackPositivo ? "animate__animated animate__shakeY" : null}>
+                                        <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
+                                    </span>
                                 }
                                 <div className="app-feedback">
-                                    {feedbackPositivo ? 'Obrigado por usar o app' : ''}
-                                    {feedbackNegativo ? 'Desculpe-nos! Obrigado pelo feedback!' : ''}
+                                    {
+                                        feedbackPositivo ? 'Obrigado por usar o app!' :
+                                            feedbackNegativo ? 'Obrigado pelo feedback!' : null
+                                    }
                                 </div>
                                 {feedbackPositivo ? '' :
-                                    <ion-icon id="thumbs-down" vlaue={feedbackNegativo} onClick={handleFeedbackNegativo} name="thumbs-down-outline"></ion-icon>
+                                    <span className={feedbackNegativo ? "animate__animated animate__shakeY" : null}>
+                                        <ion-icon id="thumbs-down" vlaue={feedbackNegativo} onClick={handleFeedbackNegativo} name="thumbs-down-outline"></ion-icon>
+                                    </span>
                                 }
                             </div>
                         </div>

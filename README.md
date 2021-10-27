@@ -8,6 +8,9 @@ Aplicativo baseado em React que traz a previsão do tempo das cidades, utilizand
 
 Baseado no Workshop fornecido pela Escola Britânica de Artes Criativas e Tecnologia e guiado pelo professor de React, Miguel.
 
+## 🔭 Acesse o App 
+
+Você pode acessar o app rodando através do deploy feito no <a href="https://reacast.vercel.app/">Vercel</a> 💜
 ## 🧪 Features
 
 - [x] Busca com todas as cidades do Mundo; 
@@ -42,4 +45,5 @@ Em Desenvolvimento
 ## ⚡️ Autor 
 
 <a href="https://twitter.com/marcosvca_">Marcos Coelho</a>
+
 
