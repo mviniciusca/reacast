@@ -22,7 +22,7 @@ Você pode acessar o app rodando através do deploy feito no <a href="https://re
 - [x] Resetar o app ao estado inicial após uma busca;
 - [x] Sistema de Feedback;
 - [x] Obter Localização no Navegador;
-- [ ] Trazer aeroportos por perto usando a localização obtida pela resposta da API do tempo e com a API AeroDataBox;
+- [ ] <s>Trazer aeroportos por perto usando a localização obtida pela resposta da API do tempo e com a API AeroDataBox;</s>
 - [ ] Split o app em componentes independentes (v2);
 
 ## 🔨 Tecnologias
