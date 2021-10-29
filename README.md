@@ -66,7 +66,7 @@ O uso do <b>fetch</b> para obter os dados foi muito tranquilo, porém precisei a
 
 Fico feliz de ter conseguido ir além do que eu pensava, quero agradecer à EBAC pelo Workshop e ao instrutor <b>Migel Maia</b> pela introdução ao React! Ao futuro, preciso estudar ainda mais o React e toda a sua estruturação e também o Javascript!
 
-Ah, e depois de aprendindo, refatorar este primeiro projeto 🤗! 
+Ah, e depois de aprendido, refatorar este primeiro projeto 🤗! 
 
 
 
