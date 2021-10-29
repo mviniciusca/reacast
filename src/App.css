@@ -248,7 +248,8 @@ a:hover {
 }
 
 .app-return-city {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    padding-top: 7px;
     font-weight: bold;
 }
 
@@ -261,8 +262,9 @@ a:hover {
 
 .app-feedback {
     display: flex;
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: bolder;
+    margin-top: 15px;
     padding: 15px;
     align-items: center;
     justify-content: center;
@@ -315,6 +317,53 @@ a:hover {
 
 }
 
+.app-return-title {
+    font-size: 1rem;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.app-return-info-wrapper {
+    display: flex;
+    font-size: 1rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 40px;
+    border-top: solid 1px var(--darkest-color);
+    border-bottom: solid 1px var(--darkest-color);
+    align-items: center;
+
+}
+
+.box-title {
+    font-size: .8rem;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+}
+
+.app-info-box {
+
+    padding: 15px;
+    flex-basis: 100%;
+
+
+}
+
+.box-icon {
+    font-size: 3rem;
+}
+
+.app-info-updated {
+    padding-top: 15px;
+    font-size: .9rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 /** Icones, botões e etc **/
 
 #thumbs-up,
@@ -359,7 +408,7 @@ footer {
 }
 
 #show {
-    display: flex;
+    display: grid;
 }
 
 #hidden {
@@ -371,29 +420,60 @@ footer {
     background-image: linear-gradient(156deg, #ff46b6 0%, #ffa1a1 100%) !important;
 }
 
+/** Mobile **/
 @media (max-width: 600px) {
+
+
+    body {
+        background-color: #aff9aa;
+        background-image: linear-gradient(152deg, #aff9aa 0%, #96fdce 100%);
+    }
+
 
     #root {
         padding: 0;
         display: grid;
         overflow-x: hidden;
         margin: 0;
+
     }
 
     .app-bloco {
-
         margin: 0;
         height: 100vh;
         justify-content: center;
         align-content: center;
         box-shadow: none;
-        border-radius: 0;
-
+        border: none;
+        background: none;
     }
 
     .app-error-handler {
         font-size: .8rem;
         display: flex;
         width: 90%;
+    }
+
+    .app-return-wrapper {
+        margin-bottom: 1px;
+    }
+
+    footer {
+        display: flex;
+        font-size: 1rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+
+
+    }
+
+    .footer-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        align-content: center;
+        gap: auto;
+
     }
 }

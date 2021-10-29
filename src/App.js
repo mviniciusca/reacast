@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
 import './App.css';
-//import Footer from './components/Footer/Footer.js';
+import Footer from './components/Footer/Footer.js';
+import moment from 'moment'; import 'moment/locale/pt-br';
 
 function App() {
 
@@ -142,7 +143,7 @@ function App() {
                 error400 || error401 || errorUnexpected ? "animate__animated animate__wobble  app-bloco class-error" :
                     isComplete ? "animate__animated app-bloco " : "app-bloco"
             }>
-                <div className="hiddenApp">
+                <div className="hiddenApp" id={hiddenApp ? "hidden" : "show"} >
                     <div className="app-logo">
                         <div className="icon-logo">
                             {
@@ -159,7 +160,10 @@ function App() {
 
                         <div className="app-react-form">
                             <input type="text" name="buscaCidade" className="app-input" value={buscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
-                            <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
+                            <button onClick={buscaPrevisaoTempo} className="busca-btn">
+                                {isSearching ? <span className="animate__animated animate__rotateOut animate__infinite infinite"><ion-icon name="refresh-outline"></ion-icon></span> :
+                                    <ion-icon name="search-outline"></ion-icon>
+                                }</button>
                         </div>
                     </div>
                     <div className="app-finder-wrapper">
@@ -198,10 +202,40 @@ function App() {
                                 <div className="app-new-search">
                                     <ion-icon id="clear-app" name="close-outline" value={homepage} onClick={handleHomepage}></ion-icon>
                                 </div>
+                                <div className="app-return-title">Previsão do Tempo em {forecast.location.name}</div>
                                 <div className="app-return-img"><img alt="imagem" src={forecast.current.condition.icon}></img></div>
                                 <div className="app-return-weather strong">{forecast.current.temp_c}°<span id="temp">C</span></div>
                                 <div className="app-return-text">{forecast.current.condition.text}</div>
                                 <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
+
+                                <div className="app-return-info-wrapper">
+
+                                    <div className="app-info-box"><div className="box-icon"><ion-icon name="flag-outline"></ion-icon></div>
+                                        <div className="box-title">Vento</div>
+
+                                        <div className="box-info">{forecast.current.wind_kph} km/h</div>
+                                    </div>
+
+                                    <div className="app-info-box">  <div className="box-icon"><ion-icon name="thermometer-outline"></ion-icon></div>
+                                        <div className="box-title">Sensação Térmica</div>
+
+                                        <div className="box-info">{forecast.current.feelslike_c}°C</div>
+                                    </div>
+
+                                    <div className="app-info-box">
+                                        <div className="box-icon"><ion-icon name="water-outline"></ion-icon></div>
+                                        <div className="box-title">Umidade Relativa do Ar</div>
+
+                                        <div className="box-info">{forecast.current.humidity}%</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="app-info-updated"> <ion-icon name="calendar-outline"></ion-icon>
+                                    dados obtidos {moment(forecast.current.last_updated).locale('pt-br').startOf('hour').fromNow()
+
+                                    } </div>
+
                                 <div className="app-feedback">localização correta?</div>
                                 <div className="app-airport-wrapper"></div>
                                 <div className="app-return-thumbs">
@@ -228,6 +262,7 @@ function App() {
                 </div>
 
             </div>
+            <Footer />
 
         </>
     );
