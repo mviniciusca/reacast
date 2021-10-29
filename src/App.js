@@ -34,8 +34,6 @@ function App() {
     // recebe os dados da api 
     const [forecast, setForecast] = useState(null);
 
-
-
     // feedback positivo
     const [feedbackPositivo, setFeedbackPositivo] = useState(false);
     const handleFeedback = () => {
