@@ -1,11 +1,11 @@
 
 import { useState } from 'react';
 import './App.css';
-import Footer from './components/Footer/Footer.js';
+//import Footer from './components/Footer/Footer.js';
 
 function App() {
 
-    //Geolocalização Google API
+    //geolocalização Google API
     window.onload = function () {
         var startPos;
         var geoSuccess = function (position) {
@@ -15,17 +15,9 @@ function App() {
 
             const geoPositionSetter = latitude + ',' + longitude;
             setGeoPosition(geoPositionSetter);
-
-            // getLatitude(latitude);
-            //getLongitude(longitude);
-
         };
         navigator.geolocation.getCurrentPosition(geoSuccess);
     };
-
-    //geolocalization state
-    // const [getLat, getLatitude] = useState(null);
-    // const [getLon, getLongitude] = useState(null);
 
     // tratamento de erros
     const [error400, setError400] = useState("");
@@ -41,7 +33,7 @@ function App() {
     // recebe os dados da api 
     const [forecast, setForecast] = useState(null);
 
-    // const [airport, setAirport] = useState([]);
+
 
     // feedback positivo
     const [feedbackPositivo, setFeedbackPositivo] = useState(false);
@@ -60,7 +52,6 @@ function App() {
 
     // Logo change
     const [isComplete, setComplete] = useState(null);
-
 
     // função que vai manipular o form no modo onchange;
     const handleBuscaCidadeChange = (element) => {
@@ -102,14 +93,11 @@ function App() {
 
     //searching
     const buscaPrevisaoTempo = () => {
-
         setComplete(false);
         setFeedbackPositivo(false);
         setFeedbackNegativo(false);
         setSearching(true)
-
         fetch(API_MOUNT_URL).then((response) => {
-
             if (response.status === 200) {
                 setComplete(true);
                 setHiddenApp(true);
@@ -119,17 +107,12 @@ function App() {
                 return response.json()
             }
             else if (response.status === 400) {
-
                 setError400(true);
-
             }
             else if (response.status === 401) {
-
                 setError401(true);
-
             }
             else {
-
                 setErrorUnxpected(true);
                 setComplete(false);
             }
@@ -137,9 +120,7 @@ function App() {
             setForecast(data);
             setBuscaCidade("");
             setSearching(false);
-
         });
-
     }
     //initial State x Back to Initial State
     const [homepage, setHomepage] = useState(false);
@@ -175,6 +156,7 @@ function App() {
                     </div>
                     <div className="app-main">
                         <div className="app-main-title">Previsão do Tempo</div>
+
                         <div className="app-react-form">
                             <input type="text" name="buscaCidade" className="app-input" value={buscaCidade} onChange={handleBuscaCidadeChange} placeholder="Busque por uma cidade"></input>
                             <button onClick={buscaPrevisaoTempo} className="busca-btn">{isSearching ? <ion-icon name="refresh-outline"></ion-icon> : <ion-icon name="search-outline"></ion-icon>}</button>
@@ -208,43 +190,45 @@ function App() {
                     </div>
                 </div>
 
-                <div className="app-result">{
-                    forecast ? (
-                        <div className="app-return-wrapper">
-                            <div className="app-new-search">
-                                <ion-icon id="clear-app" name="close-outline" value={homepage} onClick={handleHomepage}></ion-icon>
-                            </div>
-                            <div className="app-return-img"><img alt="imagem" src={forecast.current.condition.icon}></img></div>
-                            <div className="app-return-weather strong">{forecast.current.temp_c}°<span id="temp">C</span></div>
-                            <div className="app-return-text">{forecast.current.condition.text}</div>
-                            <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
-                            <div className="app-feedback">localização correta?</div>
-                            <div className="app-airport-wrapper"></div>
-                            <div className="app-return-thumbs">
-                                {feedbackNegativo ? '' :
-                                    <span className={feedbackPositivo ? "animate__animated animate__shakeY" : null}>
-                                        <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
-                                    </span>
-                                }
-                                <div className="app-feedback">
-                                    {
-                                        feedbackPositivo ? 'Obrigado por usar o app!' :
-                                            feedbackNegativo ? 'Obrigado pelo feedback!' : null
+                <div className="app-result">
+
+                    {
+                        forecast ? (
+                            <div className="app-return-wrapper">
+                                <div className="app-new-search">
+                                    <ion-icon id="clear-app" name="close-outline" value={homepage} onClick={handleHomepage}></ion-icon>
+                                </div>
+                                <div className="app-return-img"><img alt="imagem" src={forecast.current.condition.icon}></img></div>
+                                <div className="app-return-weather strong">{forecast.current.temp_c}°<span id="temp">C</span></div>
+                                <div className="app-return-text">{forecast.current.condition.text}</div>
+                                <div className="app-return-city">{forecast.location.name}, {forecast.location.country}</div>
+                                <div className="app-feedback">localização correta?</div>
+                                <div className="app-airport-wrapper"></div>
+                                <div className="app-return-thumbs">
+                                    {feedbackNegativo ? '' :
+                                        <span className={feedbackPositivo ? "animate__animated animate__shakeY" : null}>
+                                            <ion-icon id="thumbs-up" value={feedbackPositivo} onClick={handleFeedback} name="thumbs-up-outline"></ion-icon>
+                                        </span>
+                                    }
+                                    <div className="app-feedback">
+                                        {
+                                            feedbackPositivo ? 'Obrigado por usar o app!' :
+                                                feedbackNegativo ? 'Obrigado pelo feedback!' : null
+                                        }
+                                    </div>
+                                    {feedbackPositivo ? '' :
+                                        <span className={feedbackNegativo ? "animate__animated animate__shakeY" : null}>
+                                            <ion-icon id="thumbs-down" vlaue={feedbackNegativo} onClick={handleFeedbackNegativo} name="thumbs-down-outline"></ion-icon>
+                                        </span>
                                     }
                                 </div>
-                                {feedbackPositivo ? '' :
-                                    <span className={feedbackNegativo ? "animate__animated animate__shakeY" : null}>
-                                        <ion-icon id="thumbs-down" vlaue={feedbackNegativo} onClick={handleFeedbackNegativo} name="thumbs-down-outline"></ion-icon>
-                                    </span>
-                                }
                             </div>
-                        </div>
-                    ) : null
-                }
+                        ) : null
+                    }
                 </div>
 
             </div>
-            <Footer />
+
         </>
     );
 }
